@@ -1,5 +1,7 @@
 package com.mikseros.studentsystem.service;
 
-public interface StudentService {
+import com.mikseros.studentsystem.model.Student;
 
+public interface StudentService {
+	public Student saveStudent(Student student);
 }
