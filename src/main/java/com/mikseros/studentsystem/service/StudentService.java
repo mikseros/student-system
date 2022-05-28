@@ -7,4 +7,5 @@ import com.mikseros.studentsystem.model.Student;
 public interface StudentService {
 	public Student saveStudent(Student student);
 	public List<Student> getAllStudents();
+	public void deleteStudent(int id);
 }
