@@ -44,6 +44,7 @@ public class StudentServiceImpl implements StudentService {
 		// check if this student exists in DB
 		Student existingStudent = studentRepository.findById(id).orElseThrow(
 				() -> new StudentNotFoundException());
+		// set the values from the request as a student attributes
 		existingStudent.setName(student.getName());
 		existingStudent.setAddress(student.getAddress());
 		// save existing student to DB
