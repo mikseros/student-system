@@ -38,4 +38,16 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.findById(id)
 				.orElseThrow(() -> new StudentNotFoundException());
 	}
+
+	@Override
+	public Student updateStudent(Student student, int id) {
+		// check if this student exists in DB
+		Student existingStudent = studentRepository.findById(id).orElseThrow(
+				() -> new StudentNotFoundException());
+		existingStudent.setName(student.getName());
+		existingStudent.setAddress(student.getAddress());
+		// save existing student to DB
+		studentRepository.save(existingStudent);
+		return existingStudent;
+	}
 }
