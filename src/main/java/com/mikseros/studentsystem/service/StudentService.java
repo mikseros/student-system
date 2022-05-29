@@ -8,4 +8,5 @@ public interface StudentService {
 	public Student saveStudent(Student student);
 	public List<Student> getAllStudents();
 	public void deleteStudent(int id);
+	public Student findStudentById(int id);
 }

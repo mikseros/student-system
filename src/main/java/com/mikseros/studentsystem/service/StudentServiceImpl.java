@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mikseros.studentsystem.exception.StudentNotFoundException;
 import com.mikseros.studentsystem.model.Student;
 import com.mikseros.studentsystem.repository.StudentRepository;
 
@@ -16,7 +17,6 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	public Student saveStudent(Student student) {
-		
 		return studentRepository.save(student);
 	}
 
@@ -25,10 +25,17 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.findAll();
 	}
 
+	
 	@Override
 	public void deleteStudent(int id) {
-		studentRepository.findById(id).orElseThrow();
+		studentRepository.findById(id).orElseThrow(
+				() -> new StudentNotFoundException());
 		studentRepository.deleteById(id);
 	}
 
+	@Override
+	public Student findStudentById(int id) {
+		return studentRepository.findById(id)
+				.orElseThrow(() -> new StudentNotFoundException());
+	}
 }
